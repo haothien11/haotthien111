@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/stylesgiohang.css">
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Hoang Hiep Store</a>
+        
+        <input type="checkbox" id="menu-bar">
+        <label for="menu-bar">Menu</label>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gioithieu.html">Giới Thiệu</a></li>
+                <li><a href="sanpham.html">Sản Phẩm</a></li>
+                <li><a href="dangky.html">Đăng Ký</a></li>
+                <li><a href="giohang.html">Giỏ Hàng</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <table>
+            <caption>CÁC SẢN PHẨM Quần Áo</caption>
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="chonhet"></th>
+                    <th>Tên sản phẩm Poster</th>
+                    <th>Giá</th>
+                    <th>Mua</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" class="chon" checked onchange="daott(this)"></td>
+                    <td> <img src="images/item1.jpg" alt="">Loại 1</td>
+                    <td>50.000</td>
+                    <td><button onclick="them(this);tinhtong();">chọn</button></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="chon" checked onchange="daott(this)"></td>
+                    <td> <img src="images/item3.jpg" alt="">loại 2</td>
+                    <td>80.000</td>
+                    <td><button onclick="them(this);tinhtong();">chọn</button></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="chon" checked onchange="daott(this)"></td>
+                    <td> <img src="images/item4.jpg" alt="">loại 3</td>
+                    <td>45.000</td>
+                    <td><button onclick="them(this);tinhtong();">chọn</button></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="chon" checked onchange="daott(this)"></td>
+                    <td> <img src="images/item5.jpg" alt="" height="50px">loại 4</td>
+                    <td>60.000</td>
+                    <td><button onclick="them(this);tinhtong();">chọn</button></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="chon" checked onchange="daott(this)"></td>
+                    <td> <img src="images/item6.jpg" alt="" height="50px">loại 5</td>
+                    <td>60.000</td>
+                    <td><button onclick="them(this);tinhtong();">chọn</button></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="chon" checked onchange="daott(this)"></td>
+                    <td> <img src="images/item7.jpg" alt="" height="50px">loại 6</td>
+                    <td>60.000</td>
+                    <td><button onclick="them(this);tinhtong();">chọn</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <hr style="margin: 20px 0;">
+        <table id="cart">
+            <caption>Giỏ hàng của bạn</caption>
+
+            <h3>Tổng tiền: <span id="tong"></span>K</h3>
+        </table>
+
+    </div>
+    <script>
+        function them(button) {
+      var row = button.parentElement.parentElement.cloneNode(true);
+      var btnXoa = row.getElementsByTagName("button")[0];
+      btnXoa.innerText = "Xóa";
+      btnXoa.setAttribute('onclick', 'xoa(this)');
+      document.getElementById("cart").appendChild(row);
+      document.getElementById("cart").style.display = "";
+  }
+
+
+  function xoa(button) {
+      var row = button.parentElement.parentElement;
+      document.getElementById("cart").removeChild(row);
+
+      var cart = document.getElementById("cart");
+      var rows = cart.getElementsByTagName("tr");
+      var tong = 0;
+      for (var i = 0; i < rows.length; i++) {
+          var price = rows[i].children[2].innerText;
+          price = parseInt(price);
+          tong += price;
+      }
+      document.getElementById("tong").innerText = tong;
+  }
+ 
+
+  function tinhtong() {
+      var cart = document.getElementById("cart");
+      var rows = cart.getElementsByTagName("tr");
+
+      var tong = 0;
+      for (var i = 0; i < rows.length; i++) {
+          var price = rows[i].children[2].innerText;
+          price = parseInt(price);
+          tong += price;
+      }
+      document.getElementById("tong").innerText = tong;
+  }
+
+  function daott(obj) {
+      var row = obj.parentElement.parentElement;
+      var btn = row.getElementsByTagName("button")[0];
+      btn.disabled = !btn.disabled;
+  }
+    </script>
+    
+    <footer>
+        <div class="about footer-item">
+            <h3>Giới Thiệu</h3>
+            <p>Xin chào tất cả các khách hàng thân yêu.Shop mình lập ra với mong ước
+                đem đến cho khách hàng những sản phẩm giá rẻ mà lại chất lượng. Phù hợp
+                với mọi tầng lớp trong xã hội.Mình hi vọng bây giờ cũng như tương lai
+                các bạn vẫn sẽ tiếp tục ủng hộ bọn mình nha các khách Yêu.<i class='bx bxs-heart'></i>
+            </p>
+        </div>
+
+        <div class="link footer-item">
+            <h3>Liên Kết</h3>
+            <a href="index.html">Trang chủ</a>
+            <a href="gioithieu.html">Giới Thiệu</a>
+            <a href="chinhsach.html">Chính sách Đổi trả</a>
+            <a href="chinhsach.html">Chính sách bảo mật</a>
+        </div>
+
+        <div class="contact footer-item">
+            <h3>Thông Tin liên Hệ</h3>
+            <p><i class='bx bxs-map'></i>Đường Đ. Tân Thới Hiệp 07, Hiệp Thành, Quận 12, Thành phố Hồ Chí Minh</p>
+            <p><i class='bx bxs-phone'></i>190010kobiet</p>
+            <p><i class='bx bxl-gmail' ></i>dasakon11@gmail.com</p>
+        </div>
+    </footer>
+    <div class="ket">
+        <hr>
+        <p>Trang Web Thiết kế bởi PS22783-Trần Hoàng Hiệp</p>
+    </div>
+</body>
+</html>
